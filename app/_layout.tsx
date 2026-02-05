@@ -1,6 +1,6 @@
 import { AuthProvider, useAuth } from '@/context/AuthContext';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack, useRouter, useSegments } from 'expo-router';
+import { Stack, useRootNavigationState, useRouter, useSegments } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
@@ -16,20 +16,26 @@ function RootLayoutNav() {
   const { isAuthenticated } = useAuth();
   const segments = useSegments();
   const router = useRouter();
+  const rootNavigationState = useRootNavigationState();
 
   useEffect(() => {
     if (isAuthenticated === undefined) return;
+    if (!rootNavigationState?.key) return;
 
-    const inTabsGroup = segments[0] === '(tabs)';
+    const inLogin = segments[0] === 'login';
 
-    if (!isAuthenticated && inTabsGroup) {
+    if (!isAuthenticated && !inLogin) {
       // Redirect to the sign-in page.
-      router.replace('/login');
-    } else if (isAuthenticated && segments[0] === 'login') {
+      setTimeout(() => {
+        router.replace('/login');
+      }, 0);
+    } else if (isAuthenticated && inLogin) {
       // Redirect to the home page.
-      router.replace('/(tabs)');
+      setTimeout(() => {
+        router.replace('/(tabs)');
+      }, 0);
     }
-  }, [isAuthenticated, segments]);
+  }, [isAuthenticated, segments, rootNavigationState]);
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
