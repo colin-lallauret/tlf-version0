@@ -1,53 +1,64 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
 
-import { Platform } from 'react-native';
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+export const Palette = {
+  black: '#140000',
+  white: '#FFFCEB',
+  orangeDark: '#D74304',
+  orangeLight: '#FF985C',
+  green: '#00661D',
+};
 
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    text: Palette.black,
+    background: Palette.white,
+    tint: Palette.orangeDark,
+    icon: Palette.orangeDark,
+    tabIconDefault: '#9BA1A6',
+    tabIconSelected: Palette.orangeDark,
+    primary: Palette.orangeDark,
+    secondary: Palette.orangeLight,
+    success: Palette.green,
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
+    text: Palette.white,
+    background: Palette.black,
+    tint: Palette.orangeLight,
     icon: '#9BA1A6',
     tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    tabIconSelected: Palette.orangeLight,
+    primary: Palette.orangeLight,
+    secondary: Palette.orangeDark,
+    success: Palette.green,
   },
 };
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    serif: "Georgia, 'Times New Roman', serif",
-    rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
-    mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-  },
-});
+export const FontsFamilies = {
+  title: 'Unbounded_700Bold',
+  titleRegular: 'Unbounded_400Regular',
+  body: 'Fustat_400Regular',
+  bodyBold: 'Fustat_700Bold',
+};
+
+export const Spacings = {
+  xs: 4,
+  s: 8,
+  m: 16,
+  l: 24,
+  xl: 32,
+  xxl: 40,
+};
+
+export const FontSizes = {
+  title: 34,
+  subtitle: 20,
+  body: 16,
+  caption: 14,
+  small: 12,
+};
+
+export const BorderRadius = {
+  s: 8,
+  m: 12,
+  l: 16,
+  full: 9999,
+};

@@ -32,7 +32,7 @@ function RootLayoutNav() {
     } else if (isAuthenticated && inLogin) {
       // Redirect to the home page.
       setTimeout(() => {
-        router.replace('/(tabs)');
+        router.replace('/(tabs)/home');
       }, 0);
     }
   }, [isAuthenticated, segments, rootNavigationState]);
@@ -49,7 +49,30 @@ function RootLayoutNav() {
   );
 }
 
+import { Fustat_400Regular, Fustat_700Bold } from '@expo-google-fonts/fustat';
+import { Unbounded_400Regular, Unbounded_700Bold, useFonts } from '@expo-google-fonts/unbounded';
+import * as SplashScreen from 'expo-splash-screen';
+
+SplashScreen.preventAutoHideAsync();
+
 export default function RootLayout() {
+  const [loaded] = useFonts({
+    Unbounded_700Bold,
+    Unbounded_400Regular,
+    Fustat_400Regular,
+    Fustat_700Bold,
+  });
+
+  useEffect(() => {
+    if (loaded) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded]);
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
     <AuthProvider>
       <RootLayoutNav />
